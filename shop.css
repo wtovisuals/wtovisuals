@@ -1,0 +1,113 @@
+/* — Section Styling — */
+.section--shop {
+  background: #fdfdfd;
+  padding: var(--spacing-lg) 0;
+}
+.section--shop .section__title {
+  font-family: var(--font-headline);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: #2f4858;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.section--shop .section__text {
+  font-family: var(--font-body);
+  color: #4a4a4a;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-lg);
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* — Vertical List of Products — */
+.product-grid {
+  display: flex;
+  flex-direction: column;        /* each on its own line */
+  gap: var(--spacing-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* — Product Card — */
+.product-item {
+  background: #ffffff;
+  border-radius: 12px;
+  border-left: 4px solid transparent;
+  padding: var(--spacing-md);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  
+  /* make flex so image + text can sit side-by-side */
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* — Fade-in Animation Triggered by .visible — */
+.product-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* — Hover “Pop” Effect — */
+.product-item:hover {
+  border-left-color: #f26419;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+/* — Image Styling — */
+.product-item img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* — Text Container — */
+.product-item > .product-title,
+.product-item > .product-price,
+.product-item > .product-desc {
+  /* if you don’t have a wrapper, these will flex inside the card */
+  flex: 1;
+}
+
+/* — Titles & Pricing — */
+.product-title {
+  font-family: var(--font-headline);
+  font-size: 1.75rem;
+  color: #33658a;
+  margin: 0 0 var(--spacing-sm);
+}
+.product-price {
+  font-family: var(--font-subhead);
+  font-size: 1.5rem;
+  color: #f26419;
+  margin: 0 0 var(--spacing-sm);
+}
+
+/* — Descriptions — */
+.product-desc {
+  font-family: var(--font-body);
+  color: var(--color-darker);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* — Responsive — */
+@media (max-width: 768px) {
+  .product-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .product-item img {
+    margin-bottom: var(--spacing-md);
+  }
+}

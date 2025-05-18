@@ -1,0 +1,482 @@
+```css
+/* ==========================================================================
+   1. Color Palette & Custom Properties
+   ========================================================================== */
+:root {
+  /* Primary Accents */
+  --color-primary:   #f26419;   /* vivid orange */
+  --color-secondary: #f6ae2d;   /* warm gold */
+  --color-tertiary:  #86bbd8;   /* sky blue */
+  /* Deep Neutrals */
+  --color-dark-1:    #33658a;   /* steel blue */
+  --color-dark-2:    #2f4858;   /* midnight teal */
+  /* Base & Text */
+  --color-bg:        #ffffff;
+  --color-text:      #2f4858;
+  --color-muted:     #6c7a89;
+  --transition-speed: 0.3s;
+
+  /* Typography */
+  --font-display:  'Bebas Neue', sans-serif;
+  --font-heading:  'Futura', sans-serif;
+  --font-body:     'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --fs-xxl: 4rem;   /* Hero titles */
+  --fs-xl:  3rem;   /* Section headers */
+  --fs-lg:  2rem;   /* Subheaders */
+  --fs-md:  1rem;   /* Body text */
+  --fs-sm:  .875rem;/* Captions */
+  --lh-normal:  1.5;
+  --lh-heading: 1.2;
+
+  /* Spacing Scale */
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+}
+
+/* ==========================================================================
+   2. Reset & Base Styles
+   ========================================================================== */
+/* Box-sizing & core resets */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: var(--lh-normal);
+}
+ul, ol { list-style: none; margin: 0; padding: 0; }
+img { max-width: 100%; display: block; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { background: none; border: none; cursor: pointer; font: inherit; }
+
+/* Skip-link (accessibility) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto; height: auto;
+  padding: var(--spacing-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  z-index: 1000;
+}
+
+/* ==========================================================================
+   3. Layout Utilities
+   ========================================================================== */
+/* 12-column grid */
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Simple spacing helpers */
+.mb-md { margin-bottom: var(--spacing-md) !important; }
+.pt-lg { padding-top: var(--spacing-lg) !important; }
+
+/* ==========================================================================
+   4. Header & Navigation
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background var(--transition-speed),
+              box-shadow var(--transition-speed);
+}
+.header--transparent {
+  background: transparent;
+}
+.header.scrolled {
+  background: var(--color-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.header__inner {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+}
+.header__logo {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  margin: 0;
+}
+
+/* Primary nav */
+.nav__list {
+  display: flex;
+  gap: var(--spacing-md);
+}
+.nav__item { }
+.nav__link {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: color var(--transition-speed);
+}
+.nav__link:hover,
+.nav__link:focus {
+  color: var(--color-primary);
+  outline: none;
+}
+
+/* ==========================================================================
+   5. Hero Section
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('images/hero-bg.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  color: var(--color-bg);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.hero__content {
+  position: relative;
+  grid-column: 3 / -3;
+  z-index: 1;
+}
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xxl);
+  line-height: var(--lh-heading);
+  margin: 0;
+}
+.hero__subtitle {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  margin-top: var(--spacing-sm);
+}
+.button {
+  display: inline-block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  border-radius: 2rem;
+  border: 2px solid transparent;
+  transition: background var(--transition-speed),
+              color var(--transition-speed);
+}
+.button--primary {
+  border-color: var(--color-secondary);
+  color: var(--color-bg);
+}
+.hero__cta {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-color: var(--color-secondary);
+}
+.hero__cta:hover,
+.hero__cta:focus {
+  background: var(--color-secondary);
+  color: var(--color-bg);
+  outline: none;
+}
+
+/* ==========================================================================
+   6. Featured Work Gallery
+   ========================================================================== */
+.work {
+  padding: var(--spacing-lg) 0;
+}
+.section__heading {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  margin: var(--spacing-md) 0;
+}
+.work__grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+.work__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: .5rem;
+}
+.work__image {
+  display: block;
+  width: 100%;
+  transition: transform var(--transition-speed),
+              opacity var(--transition-speed);
+}
+.work__item:hover .work__image,
+.work__item:focus-within .work__image {
+  transform: scale(1.05);
+}
+.work__caption {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: var(--color-bg);
+  text-align: center;
+  padding: var(--spacing-sm);
+  transform: translateY(100%);
+  transition: transform var(--transition-speed);
+}
+.work__item:hover .work__caption,
+.work__item:focus-within .work__caption {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   7. Upcoming Projects
+   ========================================================================== */
+.projects {
+  padding: var(--spacing-lg) 0;
+}
+.projects__list {
+  grid-column: 1 / -1;
+}
+.projects__item + .projects__item {
+  margin-top: var(--spacing-md);
+}
+.projects__toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  cursor: pointer;
+}
+.projects__toggle:focus {
+  outline: 2px solid var(--color-primary);
+}
+.projects__details {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+.projects__thumbnail {
+  border-radius: .5rem;
+  margin-bottom: var(--spacing-sm);
+}
+.projects__description {
+  font-size: var(--fs-md);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   8. Social Links
+   ========================================================================== */
+.socials {
+  padding: var(--spacing-lg) 0;
+}
+.socials__list {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--spacing-md);
+}
+.socials__item { }
+.socials__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  transition: background var(--transition-speed),
+              transform var(--transition-speed);
+}
+.socials__link:hover,
+.socials__link:focus {
+  background: var(--color-secondary);
+  transform: scale(1.1);
+  outline: none;
+}
+.socials__link svg {
+  width: 1.5rem; height: 1.5rem;
+  fill: var(--color-text);
+  transition: fill var(--transition-speed);
+}
+.socials__link:hover svg,
+.socials__link:focus svg {
+  fill: var(--color-bg);
+}
+
+/* ==========================================================================
+   9. Shop Preview
+   ========================================================================== */
+.shop {
+  padding: var(--spacing-lg) 0;
+}
+.shop__cards {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+.shop__card {
+  background: var(--color-bg);
+  border-radius: .5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform var(--transition-speed),
+              box-shadow var(--transition-speed);
+  display: flex;
+  flex-direction: column;
+}
+.shop__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.shop__image {
+  width: 100%;
+  display: block;
+}
+.shop__info {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+}
+.shop__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  margin: 0 0 var(--spacing-sm);
+}
+.shop__price {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+.button--secondary {
+  border-color: var(--color-secondary);
+}
+.shop__button {
+  margin-top: auto;
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: background var(--transition-speed),
+              color var(--transition-speed);
+}
+.shop__button:hover,
+.shop__button:focus {
+  background: var(--color-secondary);
+  color: var(--color-bg);
+  outline: none;
+}
+
+/* ==========================================================================
+   10. Back-to-Top Button
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 3rem; height: 3rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--transition-speed),
+              visibility var(--transition-speed);
+  z-index: 1000;
+}
+.back-to-top.visible {
+  opacity: 1; visibility: visible;
+}
+.back-to-top svg {
+  width: 1.5rem; height: 1.5rem;
+  fill: var(--color-bg);
+}
+
+/* ==========================================================================
+   11. Footer
+   ========================================================================== */
+.footer {
+  background: var(--color-dark-2);
+  color: var(--color-bg);
+  text-align: center;
+  padding: var(--spacing-md) 0;
+  grid-column: 1 / -1;
+}
+.footer__text {
+  font-size: var(--fs-sm);
+  margin: 0;
+}
+
+/* ==========================================================================
+   12. Animations & Reveal-on-Scroll
+   ========================================================================== */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-speed),
+              transform var(--transition-speed);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   13. Accessibility & Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   14. Responsive Breakpoints
+   ========================================================================== */
+/* ≥ 480px */
+@media (min-width: 480px) {
+  .hero__content { grid-column: 4 / -4; }
+}
+/* ≥ 768px */
+@media (min-width: 768px) {
+  .projects__toggle { padding: var(--spacing-md); }
+  .work__grid, .shop__cards { gap: var(--spacing-lg); }
+}
+/* ≥ 1024px */
+@media (min-width: 1024px) {
+  .hero__title { font-size: calc(var(--fs-xxl) * 1.1); }
+  .hero__subtitle { font-size: calc(var(--fs-lg) * 1.1); }
+  .container { gap: calc(var(--spacing-lg) * 1.25); }
+}
+/* ≥ 1440px */
+@media (min-width: 1440px) {
+  .container { padding: 0 var(--spacing-lg); }
+}
+```
