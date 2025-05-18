@@ -107,3 +107,46 @@
   50% { transform: scale(1.3); }
   100% { transform: scale(1); }
 }
+/* make the canvas scale down fluidly */
+.game-container { 
+  max-width: 800px; 
+  margin: 0 auto; 
+}
+#pongCanvas {
+  width: 100%;
+  height: auto;
+  touch-action: none; /* allow touch events on mobile without scrolling */
+}
+
+/* responsive score bar & canvas */
+@media (max-width: 768px) {
+  .score-bar {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .score-icon { width: 30px; height: 30px; }
+  .player-name { font-size: 0.7rem; }
+  .score { font-size: 2rem; }
+  .vs-badge {
+    font-size: 1.8rem;
+    padding: 0.2rem 0.8rem;
+  }
+  .game-container { margin: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .score-bar {
+    padding: 0.8rem;
+    gap: 0.5rem;
+  }
+  .score-icon { width: 24px; height: 24px; }
+  .player-name { font-size: 0.6rem; }
+  .score { font-size: 1.6rem; }
+  .vs-badge {
+    font-size: 1.5rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .game-container { margin: 0.5rem; }
+}
+
