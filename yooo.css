@@ -688,3 +688,32 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.hero-video.no-video {
+  background-color: #000;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-video__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.2);
+  animation: fadeBounce 3s ease-in-out infinite;
+}
+
+@keyframes fadeBounce {
+  0%, 100% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
