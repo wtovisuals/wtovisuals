@@ -1,4 +1,4 @@
-g
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +85,7 @@ g
     <div class="hero-video__wrapper">
       <iframe
         class="hero-video__iframe"
-        src="https://www.youtube.com/embed/A7fLmEeyesM?autoplay=1&mute=1&controls=0&loop=1&playlist=A7fLmEeyesM"
+        src="https://youtube.com/shorts/7Uuw78dnep8?si=vMWlR7pnaWHS0DjZ"
         frameborder="0"
         allow="autoplay; fullscreen"
         allowfullscreen>
@@ -98,13 +98,31 @@ g
     <!-- CAPTAIN CHICKEN (ART + SHORT) -->
     <section id="chicken" class="section section--chicken">
       <div class="container">
-        <h2 class="section__title">Captain Chicken MUSIC VIDEO</h2>
+        <h2 class="section__title">Captain Chicken MUSIC VIDEO OUT NOW!</h2>
 
         <!-- Two centered art PNGs -->
-        <div class="chicken-art-container">
-          <img src="Cover art.jpg" alt="Captain Chicken Art 1" class="chicken-art"/>
-      
-        </div>
+     <!-- Jumbotron YouTube Section -->
+<div class="chicken-art-container">
+  <div class="jumbotron-video" onclick="playVideo(this)">
+    <img src="https://img.youtube.com/vi/tSVg33J6ABE/maxresdefault.jpg" alt="Captain Chicken Video Thumbnail">
+    <div class="play-button"></div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  function playVideo(container) {
+    const iframe = document.createElement('iframe');
+    iframe.src = "https://www.youtube.com/embed/tSVg33J6ABE?autoplay=1&rel=0";
+    iframe.frameBorder = "0";
+    iframe.allow = "autoplay; encrypted-media";
+    iframe.allowFullscreen = true;
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    container.innerHTML = "";
+    container.appendChild(iframe);
+  }
+</script>
 		  <br>
 <hr>
 		    <br>
